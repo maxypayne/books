@@ -1,21 +1,20 @@
 plugins {
-    id("java-library")
+    id("java")
     id("org.springframework.boot") version "3.1.3"
     id("io.spring.dependency-management") version "1.1.3"
 }
 
 group = "com.mlucov"
-version = "1.0-SNAPSHOT"
+version = "unspecified"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    // JPA API (Jakarta Persistence)
-    implementation(project(":domain"))
     implementation("org.springframework.boot:spring-boot-starter")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation(project(":application"))
+    implementation(project(":infrastructure:persistence"))
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
