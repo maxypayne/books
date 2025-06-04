@@ -1,7 +1,5 @@
 package com.mlucov.Threads.test;
 
-import jdk.dynalink.Operation;
-
 import java.util.concurrent.*;
 public class Multi {
     public static void main(String[] args) {

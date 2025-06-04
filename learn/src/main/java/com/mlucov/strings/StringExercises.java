@@ -1,4 +1,4 @@
-package com.maxim;
+package com.mlucov.strings;
 
 import java.util.*;
 import java.util.regex.Pattern;

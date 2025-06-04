@@ -13,7 +13,7 @@ public class TestCollector {
           Supplier supplier = () -> new ArrayList<String>();
         // 2 Accumulateur: Ajoute un element du stream au container mutable
         // (container, e) -> container.add(e)
-        BiConsumer<ArrayList<String>, String> biConsumer = (list, e) -> { list.add(e) };// ne retourne rien
+        BiConsumer<ArrayList<String>, String> biConsumer = (list, e) -> { list.add(e);};// ne retourne rien
         // 3 Combiner: Fussione deux containeurs mutables
         // (container1, container2) -> container2
         BinaryOperator<ArrayList<String>> binaryOperator = (list1, list2) -> {

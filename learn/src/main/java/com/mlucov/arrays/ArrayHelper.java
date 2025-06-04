@@ -1,4 +1,4 @@
-package com.maxim;
+package com.mlucov.arrays;
 
 import java.util.Arrays;
 

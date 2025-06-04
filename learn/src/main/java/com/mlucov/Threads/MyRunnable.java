@@ -1,6 +1,6 @@
 package com.mlucov.Threads;
 
-import static learn.Threads.ThreadColor.ANSI_RED;
+import static com.mlucov.Threads.ThreadColor.ANSI_RED;
 
 public class MyRunnable implements Runnable {
     @Override

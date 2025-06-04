@@ -1,9 +1,6 @@
 package com.mlucov.queue;
 
-import learn.stack.Stack;
-import learn.utils.Logger;
-
-import java.util.Arrays;
+import com.mlucov.stack.Stack;
 
 public class Main {
     public static void main(String[] args) {

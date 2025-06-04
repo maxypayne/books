@@ -1,4 +1,4 @@
-package com.maxim;
+package com.mlucov.strings;
 
 public class Main {
     public static void main(String[] args) {

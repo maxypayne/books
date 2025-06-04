@@ -53,9 +53,9 @@ INDEX
 */
 
 //
-ALTER TABLE
- Persons
-ADD Birthday DATE
+// ALTER TABLE
+//  Persons
+// ADD Birthday DATE
 ;
 
 

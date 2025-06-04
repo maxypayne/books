@@ -1,7 +1,5 @@
 package com.mlucov.Threads;
 
-import static learn.Threads.ThreadColor.ANSI_BLUE;
-
 public class Main {
     public static void main(String[] args) {
 

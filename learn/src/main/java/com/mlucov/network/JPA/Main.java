@@ -1,9 +1,7 @@
 package com.mlucov.network.JPA;
 
-import com.maxim.api.models.Student;
 import jakarta.persistence.*;
 
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {

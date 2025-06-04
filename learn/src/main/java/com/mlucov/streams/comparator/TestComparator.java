@@ -1,6 +1,6 @@
 package com.mlucov.streams.comparator;
 
-import learn.person.Person;
+import com.mlucov.person.Person;
 
 import java.util.function.Function;
 
