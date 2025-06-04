@@ -1,0 +1,10 @@
+version: '3'
+services:
+  books-local-db:
+    extends:
+      service: books-db
+      file: compose.yml
+    ports:
+      - '15432:5432'
+    volumes:
+      - ./db-data-local:/var/lib/postgresql/data

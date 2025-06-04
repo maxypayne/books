@@ -1,0 +1,12 @@
+version: '1'
+
+services:
+  books-db:
+    restart: always
+    image: postgres:14.9
+    environment:
+      - POSTGRES_USER=books_user
+      - POSTGRES_PASSWORD=books_password
+      - POSTGRES_DB=books
+    labels:
+      org.springframework.boot.service0connection: postgres
