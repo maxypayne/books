@@ -1,0 +1,16 @@
+Threads
+Hash code
+Security
+Optional
+
+JIT - Just In Time
+Heap
+Stack memory
+
+
+Class and object in memory // No, you can't override the static method because they are the part of the class, not the object
+string pool, la valeur change si je change la deuxieme variable qui a le meme texte ?
+inner classes
+nested classes
+
+space and time

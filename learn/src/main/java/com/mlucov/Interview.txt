@@ -1,0 +1,52 @@
+APP
+    Il s'agit d'une vielle application qui faissait.
+    Il s'agissait d'une application conçue pour les particuliers afin de faciliter la gestion de leurs
+    démarches administratives liées aux véhicules, c'est une application qui sert a faciliter l'echage entre
+    le particulier e la prefecture.
+    C'etait une application monolitique en angular , divisee en plussieurs modules.
+    Les 3 principales module;
+    1er module
+            - Simulateur administratif
+            - Simulateur des plaques
+    2eme module
+           - Coordonnees
+           - Payement
+    3eme
+           - Mon compte
+           - Gestion des commandes
+
+    J'ai fais toute la partie front + un e partie d'API
+
+
+    API
+        - Creation des comptes
+        - Gesion des images
+        - creation des bonnes de commandes/factures remplissage de differents cerfas
+        - connexion a une multitude d'api pour la gestion metier
+        - gestion de images, transformation des pdfs en png
+
+    BO
+        - Gestion des commandes
+        - Creation des commandes sur ants le gestionnaire des titres securises
+        - Gestion du stock et automatisation des commandes lors de dimunition des stock
+        - Gestion de contacts
+    B2B
+
+    Formation Azure
+    Cela ma permis de decouvrir un peu le monde du cloud, ce fut une formation tres enrechissante ou j'ai appris
+     enormement deschoses.
+     Suite a cette formation j'au eu l'occasion des travailler sur un projet L'oreal qui consistait a transformer une api en nodejs
+     en fontions executables sur Azure directement.
+
+
+
+
+     C'est un
+     Cette app contient quelque simulateurs ou tunnels divisee en plussiuers modules.
+
+     La stack technique Angular, Nodejs, ElasticSearch, Sass
+     Equipe 1 lead, 2 dev, 1 comercial, 1 po, 1 designer,
+     Le projet ete divisee en trois garnds modules: tunnel, a partie coordonness et paiement et la partie mon compte
+     qui contenait toute la partie de gestion et resume des commandes.
+     On autilise tres peu des libraries voir presque pas du tout pour la partie front ce qui ma permis un peu de
+     mettre la main sur toute les partie front, ce qui ma permis de toucher un peu a pas mal de parties sur le develpment front
