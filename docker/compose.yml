@@ -1,7 +1,7 @@
 version: '1'
 
 services:
-  books-db:
+  postgres:
     restart: always
     image: postgres:14.9
     environment:

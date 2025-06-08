@@ -1,0 +1,8 @@
+version: '1'
+services:
+  postgres:
+    extends:
+      service: postgres
+      file: compose.yml
+    ports:
+      - '15433:5432'

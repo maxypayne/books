@@ -7,8 +7,18 @@ spring:
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
+  liquibase:
+    enabled: true
+    change-log: classpath:db/master.xml
+    default-schema: public
+
 logging:
   level:
-    org:
-      springframework: DEBUG
-    org.springframework.boot: DEBUG
+    liquibase: DEBUG
+
+aws:
+  region: ${STORE_REGION}
+  s3:
+    bucket: ${STORE_BUCKET_NAME}
+    access-key: ${STORE_ACCESS_KEY}
+    secret-key: ${STORE_SECRET_KEY}

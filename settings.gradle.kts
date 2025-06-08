@@ -14,3 +14,9 @@ include("learn")
 include("rest-api:it")
 include("rest-api:untitled")
 include("rest-api:it")
+
+
+
+
+include("infrastructure:file-store")
+findProject(":infrastructure:file-store")?.name = "file-store"
