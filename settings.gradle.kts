@@ -20,3 +20,4 @@ include("rest-api:it")
 
 include("infrastructure:file-store")
 findProject(":infrastructure:file-store")?.name = "file-store"
+include("infrastructure:security")
