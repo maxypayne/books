@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/infrastructure/config" />
             <option value="$PROJECT_DIR$/infrastructure/file-store" />
             <option value="$PROJECT_DIR$/infrastructure/persistence" />
+            <option value="$PROJECT_DIR$/infrastructure/security" />
             <option value="$PROJECT_DIR$/learn" />
             <option value="$PROJECT_DIR$/rest-api" />
             <option value="$PROJECT_DIR$/rest-api/it" />

@@ -8,11 +8,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserQuery implements UserQueryApi {
-    private UserGateway userGateway;
+    private final UserRepository userRepository;
+
+    public UserQuery(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public UserDetailsOutput getUserDetailsByEmail(String email) {
-        User user = userGateway.getUserByEmail(email)
+        User user = userRepository.getUserByEmail(email)
             .orElseThrow(() -> new UserNotFoundException("User not found"));
 
         return new UserDetailsOutput(
@@ -28,7 +32,7 @@ public class UserQuery implements UserQueryApi {
 
     @Override
     public UserDetailsOutput getUserDetailsById(Long id) {
-        User user = userGateway.getUserById(id)
+        User user = userRepository.getUserById(id)
             .orElseThrow(() -> new UserNotFoundException("User not found"));
         return new UserDetailsOutput(
             user.getId(),

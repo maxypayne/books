@@ -22,3 +22,7 @@ aws:
     bucket: ${STORE_BUCKET_NAME}
     access-key: ${STORE_ACCESS_KEY}
     secret-key: ${STORE_SECRET_KEY}
+
+jwt:
+  secret: ton_secret_jwt_super_secure
+  expiration: 3600000

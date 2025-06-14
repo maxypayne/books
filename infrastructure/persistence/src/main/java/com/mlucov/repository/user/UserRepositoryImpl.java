@@ -1,12 +1,14 @@
 package com.mlucov.repository.user;
 
-import com.mlucov.business.user.UserGateway;
+import com.mlucov.business.user.UserRepository;
 import com.mlucov.models.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-public class UserGatewayRepository implements UserGateway {
-    private static UserRepository repository;
+@Repository
+public class UserRepositoryImpl implements UserRepository {
+    private static JpaUserRepository repository;
     @Override
 
     public Optional<User> getUserByEmail(String email) {
