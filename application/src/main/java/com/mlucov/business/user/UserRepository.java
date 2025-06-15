@@ -8,4 +8,6 @@ public interface UserRepository {
     Optional<User> getUserByEmail(String email);
     Optional<User> getUserById(Long id);
     Optional<User> findByUsername(String username);
+    User save(User user);
+    boolean existsByEmail(String email);
 }

@@ -3,16 +3,17 @@ package com.mlucov.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "\"user\"")
 @Data
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "username")
@@ -26,6 +27,9 @@ public class User {
 
     @Column(name = "enabled")
     private boolean enabled;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

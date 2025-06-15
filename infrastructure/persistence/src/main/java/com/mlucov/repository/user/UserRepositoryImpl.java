@@ -8,7 +8,12 @@ import java.util.Optional;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
-    private static JpaUserRepository repository;
+    private final JpaUserRepository repository;
+
+    public UserRepositoryImpl(JpaUserRepository repository) {
+        this.repository = repository;
+    }
+
     @Override
 
     public Optional<User> getUserByEmail(String email) {
@@ -23,6 +28,16 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public Optional<User> findByUsername(String username) {
         return repository.findByUsername(username);
+    }
+
+    @Override
+    public User save(User user) {
+        return this.repository.save(user);
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return repository.existsByEmail(email);
     }
 
 }
