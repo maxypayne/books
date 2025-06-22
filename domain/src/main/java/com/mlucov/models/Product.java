@@ -3,13 +3,16 @@ package com.mlucov.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Table(name = "product")
 @Entity
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    Long id;
 
     @Column(name = "name")
     String name;
@@ -27,8 +30,6 @@ public class Product {
     String imageUrl;
     @Column(name = "brand")
     String brand;
-    @Column(name = "rating")
-    Double rating;
 
     @Column(name = "is_active")
     boolean active;
@@ -39,5 +40,14 @@ public class Product {
     @JoinColumn(name = "category_id")
     @ManyToOne(fetch = FetchType.LAZY)
     Category category;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Rating> ratings = new ArrayList<>();
+
+    // Getter utile
+    public double getAverageRating() {
+        return ratings.isEmpty() ? 0.0 :
+            ratings.stream().mapToInt(Rating::getScore).average().orElse(0.0);
+    }
 
 }

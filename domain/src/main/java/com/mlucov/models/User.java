@@ -39,5 +39,8 @@ public class User {
     )
     private Set<Role> roles = new HashSet<>();
 
+//    @ManyToMany
+//    @JoinTable
+
     // Getters and Setters
 }
