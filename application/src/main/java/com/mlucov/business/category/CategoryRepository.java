@@ -1,6 +1,6 @@
 package com.mlucov.business.category;
 
-import com.mlucov.models.Category;
+import com.mlucov.entities.Category;
 
 import java.util.Optional;
 

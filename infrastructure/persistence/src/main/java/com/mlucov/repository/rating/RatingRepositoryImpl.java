@@ -1,7 +1,7 @@
 package com.mlucov.repository.rating;
 
 import com.mlucov.business.rating.RatingRepository;
-import com.mlucov.models.Rating;
+import com.mlucov.entities.Rating;
 
 import java.util.Optional;
 

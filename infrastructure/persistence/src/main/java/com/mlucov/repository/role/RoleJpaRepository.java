@@ -1,6 +1,6 @@
 package com.mlucov.repository.role;
 
-import com.mlucov.models.Role;
+import com.mlucov.entities.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

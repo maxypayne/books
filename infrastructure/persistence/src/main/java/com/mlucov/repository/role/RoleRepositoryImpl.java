@@ -1,7 +1,7 @@
 package com.mlucov.repository.role;
 
 import com.mlucov.business.role.RoleRepository;
-import com.mlucov.models.Role;
+import com.mlucov.entities.Role;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

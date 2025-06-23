@@ -1,6 +1,6 @@
 package com.mlucov.repository.rating;
 
-import com.mlucov.models.Rating;
+import com.mlucov.entities.Rating;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,6 +1,6 @@
 package com.mlucov.repository.user;
 
-import com.mlucov.models.User;
+import com.mlucov.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

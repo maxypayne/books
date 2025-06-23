@@ -1,10 +1,7 @@
 package com.mlucov.repository.category;
 
 import com.mlucov.business.category.CategoryRepository;
-import com.mlucov.business.product.ProductRepository;
-import com.mlucov.models.Category;
-import com.mlucov.models.Product;
-import com.mlucov.repository.product.ProductJpaRepository;
+import com.mlucov.entities.Category;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

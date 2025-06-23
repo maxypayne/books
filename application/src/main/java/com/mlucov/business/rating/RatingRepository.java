@@ -1,8 +1,6 @@
 package com.mlucov.business.rating;
 
-import com.mlucov.models.Product;
-import com.mlucov.models.Rating;
-import com.mlucov.models.User;
+import com.mlucov.entities.Rating;
 
 import java.util.Optional;
 

@@ -1,9 +1,9 @@
 package com.mlucov.business.rating;
 
 import com.mlucov.business.product.ProductRepository;
-import com.mlucov.models.Product;
-import com.mlucov.models.Rating;
-import com.mlucov.models.User;
+import com.mlucov.entities.Product;
+import com.mlucov.entities.Rating;
+import com.mlucov.entities.User;
 
 import java.util.Optional;
 

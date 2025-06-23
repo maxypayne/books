@@ -1,6 +1,6 @@
 package com.mlucov.business.role;
 
-import com.mlucov.models.Role;
+import com.mlucov.entities.Role;
 
 import java.util.Optional;
 

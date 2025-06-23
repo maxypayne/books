@@ -1,7 +1,7 @@
 package com.mlucov.repository.user;
 
 import com.mlucov.business.user.UserRepository;
-import com.mlucov.models.User;
+import com.mlucov.entities.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.mlucov.models;
+package com.mlucov.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;

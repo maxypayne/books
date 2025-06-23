@@ -1,0 +1,31 @@
+package com.mlucov.business.product.query;
+
+import com.mlucov.business.PaginatedOutput;
+import com.mlucov.business.product.ProductRepository;
+import com.mlucov.business.product.models.GetProductsInput;
+import com.mlucov.entities.Product;
+import com.mlucov.models.Paginated;
+
+public class ProductQuery implements ProductQueryApi {
+    private final ProductRepository repository;
+
+    public ProductQuery(ProductRepository repository) {
+        this.repository = repository;
+    }
+
+    @Override
+    public PaginatedOutput<ProductCardOutput> getProducts(GetProductsInput input) {
+        Paginated<Product> paginated = this.repository.findAll(input);
+        return new PaginatedOutput<>(
+            paginated.total(),
+            paginated.data().stream().map(product -> {
+                return new ProductCardOutput(
+                    product.getId(),
+                    product.getImageUrl(),
+                    product.getName(),
+                    product.getDescription()
+                );
+            }).toList()
+        );
+    }
+}

@@ -1,6 +1,6 @@
 package com.mlucov.business.user;
 
-import com.mlucov.models.User;
+import com.mlucov.entities.User;
 
 import java.util.Optional;
 

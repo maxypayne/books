@@ -4,8 +4,8 @@ import com.mlucov.business.category.CategoryRepository;
 import com.mlucov.business.product.ProductRepository;
 import com.mlucov.business.product.models.SaveProductInput;
 import com.mlucov.business.upload.ImageStorageGateway;
-import com.mlucov.models.Category;
-import com.mlucov.models.Product;
+import com.mlucov.entities.Category;
+import com.mlucov.entities.Product;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,7 +24,6 @@ public class SaveProductUseCase implements SaveProductUseCaseApi {
     }
 
     private Integer updateStockQuantity(Product product) {
-        // todo
         return product.getStockQuantity() + 1;
     }
 
@@ -40,14 +39,8 @@ public class SaveProductUseCase implements SaveProductUseCaseApi {
         return this.saveProduct(input, product);
     }
 
-
     private String uploadImage(MultipartFile file) {
-        try {
-            return this.imageStorageGateway.upload(file);
-        } catch (Exception e) {
-//            e.getMessage();
-            throw new RuntimeException(e);
-        }
+        return this.imageStorageGateway.upload(file);
     }
     private Category getCategoryById(Short id) {
         return this.categoryRepository.findById(id).orElseThrow(() -> new RuntimeException("Category not found"));
