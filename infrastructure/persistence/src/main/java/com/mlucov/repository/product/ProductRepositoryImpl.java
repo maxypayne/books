@@ -8,7 +8,12 @@ import java.util.Optional;
 
 @Repository
 public class ProductRepositoryImpl implements ProductRepository {
-    private ProductJpaRepository repository;
+    private final ProductJpaRepository repository;
+
+    public ProductRepositoryImpl(ProductJpaRepository repository) {
+        this.repository = repository;
+    }
+
     @Override
     public Optional<Product> findById(long id) {
         return repository.findById(id);

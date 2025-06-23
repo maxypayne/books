@@ -11,7 +11,12 @@ import java.util.Optional;
 
 @Repository
 public class CategoryRepositoryImpl implements CategoryRepository {
-    private CategoryJpaRepository repository;
+    private final CategoryJpaRepository repository;
+
+    public CategoryRepositoryImpl(CategoryJpaRepository repository) {
+        this.repository = repository;
+    }
+
     @Override
     public Optional<Category> findById(short id) {
         return repository.findById(id);

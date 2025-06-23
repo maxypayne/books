@@ -34,9 +34,6 @@ public class Product {
     @Column(name = "is_active")
     boolean active;
 
-    @Column(name = "category_id")
-    Integer categoryId;
-
     @JoinColumn(name = "category_id")
     @ManyToOne(fetch = FetchType.LAZY)
     Category category;

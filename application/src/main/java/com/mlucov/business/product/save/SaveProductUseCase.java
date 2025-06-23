@@ -3,7 +3,7 @@ package com.mlucov.business.product.save;
 import com.mlucov.business.category.CategoryRepository;
 import com.mlucov.business.product.ProductRepository;
 import com.mlucov.business.product.models.SaveProductInput;
-import com.mlucov.business.save.ImageStorageGateway;
+import com.mlucov.business.upload.ImageStorageGateway;
 import com.mlucov.models.Category;
 import com.mlucov.models.Product;
 import jakarta.transaction.Transactional;
@@ -29,13 +29,13 @@ public class SaveProductUseCase implements SaveProductUseCaseApi {
     }
 
     @Override
-    public Integer createProduct(SaveProductInput input) {
+    public Long createProduct(SaveProductInput input) {
         Product product = new Product();
         return this.saveProduct(input, product);
     }
 
     @Override
-    public Integer updateProduct(SaveProductInput input, Integer id) {
+    public Long updateProduct(SaveProductInput input, Long id) {
         Product product = this.productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
         return this.saveProduct(input, product);
     }
@@ -45,22 +45,22 @@ public class SaveProductUseCase implements SaveProductUseCaseApi {
         try {
             return this.imageStorageGateway.upload(file);
         } catch (Exception e) {
-            e.getMessage();
+//            e.getMessage();
+            throw new RuntimeException(e);
         }
-        return null;
     }
     private Category getCategoryById(Short id) {
         return this.categoryRepository.findById(id).orElseThrow(() -> new RuntimeException("Category not found"));
     }
-    public Integer saveProduct(SaveProductInput input, Product product) {
+    public Long saveProduct(SaveProductInput input, Product product) {
         product.setName(input.name());
         product.setDescription(input.description());
         product.setPrice(input.price());
         product.setSku(input.sku());
-        product.setStockQuantity(this.updateStockQuantity(product));
-        product.setImageUrl(this.uploadImage(input.image()));
+        product.setImageUrl(this.uploadImage(input.file()));
         product.setCategory(this.getCategoryById(input.categoryId()));
         product.setBrand(input.brand());
+        product.setStockQuantity(product.getStockQuantity() != null ? this.updateStockQuantity(product) : 0);
 
         return this.productRepository.save(product).getId();
     }

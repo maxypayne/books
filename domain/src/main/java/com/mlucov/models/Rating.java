@@ -15,7 +15,7 @@ public class Rating {
     @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
 
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "user_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 

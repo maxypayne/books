@@ -1,8 +1,8 @@
-package com.mlucov.business.product.models;
+package com.mlucov.models.request;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public record SaveProductInput(
+public record SaveProductRequest(
     String name,
     String description,
     Double price,
@@ -10,5 +10,5 @@ public record SaveProductInput(
     MultipartFile file,
     String brand,
     Short categoryId
-) {
+){
 }
