@@ -5,6 +5,7 @@ import com.mlucov.business.product.models.GetProductsInput;
 import com.mlucov.entities.Product;
 import com.mlucov.models.Paginated;
 
+import javax.swing.text.html.Option;
 import java.awt.print.Pageable;
 import java.util.Optional;
 
@@ -12,4 +13,5 @@ public interface ProductRepository {
     Optional<Product> findById(long id);
     Product save(Product product);
     Paginated<Product> findAll(GetProductsInput input);
+    Optional<Product> getById(Long id);
 }

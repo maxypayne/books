@@ -18,14 +18,23 @@ public class ProductQuery implements ProductQueryApi {
         Paginated<Product> paginated = this.repository.findAll(input);
         return new PaginatedOutput<>(
             paginated.total(),
-            paginated.data().stream().map(product -> {
-                return new ProductCardOutput(
-                    product.getId(),
-                    product.getImageUrl(),
-                    product.getName(),
-                    product.getDescription()
-                );
-            }).toList()
+            paginated.data().stream().map(product -> new ProductCardOutput(
+                product.getId(),
+                product.getImageUrl(),
+                product.getName(),
+                product.getDescription()
+            )).toList()
+        );
+    }
+
+    @Override
+    public ProductCardOutput getProductById(long id) {
+        Product product = this.repository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
+        return new ProductCardOutput(
+            product.getId(),
+            product.getImageUrl(),
+            product.getName(),
+            product.getDescription()
         );
     }
 }

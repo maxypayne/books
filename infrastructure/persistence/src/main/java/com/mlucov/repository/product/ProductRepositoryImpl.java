@@ -36,4 +36,9 @@ public class ProductRepositoryImpl implements ProductRepository {
         Page<Product> products = repository.findAll(pageable);
         return new Paginated<>(products.getTotalElements(), products.getContent());
     }
+
+    @Override
+    public Optional<Product> getById(Long id) {
+        return repository.findById(id);
+    }
 }

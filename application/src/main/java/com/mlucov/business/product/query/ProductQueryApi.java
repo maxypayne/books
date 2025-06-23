@@ -5,4 +5,5 @@ import com.mlucov.business.product.models.GetProductsInput;
 
 public interface ProductQueryApi {
     PaginatedOutput<ProductCardOutput> getProducts(GetProductsInput input);
+    ProductCardOutput getProductById(long id);
 }
