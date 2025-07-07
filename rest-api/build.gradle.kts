@@ -15,7 +15,6 @@ dependencies {
     implementation(project(":application"))
     implementation(project(":infrastructure:config"))
     implementation(project(":infrastructure:file-store"))
-    implementation(project(":infrastructure:security"))
     implementation("org.liquibase:liquibase-core")
     compileOnly("org.projectlombok:lombok:1.18.30")
     runtimeOnly("org.springframework.boot:spring-boot-devtools")

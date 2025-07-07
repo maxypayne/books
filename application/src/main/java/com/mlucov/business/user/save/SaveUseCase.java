@@ -15,12 +15,12 @@ import java.util.stream.Collectors;
 
 @Component
 @Transactional
-public class SaveSaveUserUseCase implements SaveUserUseCaseApi {
+public class SaveUseCase implements SaveUserUseCaseApi {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
 
-    public SaveSaveUserUseCase(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
+    public SaveUseCase(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;

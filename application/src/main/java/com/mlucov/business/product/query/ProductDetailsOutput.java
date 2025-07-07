@@ -1,6 +1,6 @@
-package com.mlucov.models.response;
+package com.mlucov.business.product.query;
 
-public record ProductDetailsResponse(
+public record ProductDetailsOutput(
     Long id,
     String title,
     String description,
@@ -12,4 +12,5 @@ public record ProductDetailsResponse(
     String category,
     Double rating
 ) {
+
 }
