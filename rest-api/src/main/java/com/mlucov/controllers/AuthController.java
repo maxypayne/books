@@ -2,6 +2,7 @@ package com.mlucov.controllers;
 
 import com.mlucov.business.auth.AuthUseCaseApi;
 import com.mlucov.models.request.LoginRequest;
+import com.mlucov.models.response.LoginResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest request) {
-        return this.authUseCaseApi.login(request.email(), request.password());
+    public LoginResponse login(@RequestBody LoginRequest request) {
+        return new LoginResponse(this.authUseCaseApi.login(request.email(), request.password()));
     }
 }
