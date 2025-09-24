@@ -1,7 +1,8 @@
 package com.mlucov.services;
 
 import com.mlucov.business.auth.AuthGateway;
-import exception.InvalidCredentialsException;
+import com.mlucov.enums.ErrorType;
+import com.mlucov.exception.ApplicationException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,7 +26,7 @@ public class SpringAuthService implements AuthGateway {
             );
             return (UserDetails) authentication.getPrincipal();
         } catch (BadCredentialsException ex) {
-            throw new InvalidCredentialsException("Identifiants incorrects");
+            throw new ApplicationException(ErrorType.INVALID_CREDENTIALS);
         }
     }
 }

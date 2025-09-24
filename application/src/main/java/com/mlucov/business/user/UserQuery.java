@@ -3,7 +3,7 @@ package com.mlucov.business.user;
 import com.mlucov.business.user.models.RoleOutput;
 import com.mlucov.business.user.models.UserDetailsOutput;
 import com.mlucov.entities.User;
-import exception.UserNotFoundException;
+import com.mlucov.exception.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service

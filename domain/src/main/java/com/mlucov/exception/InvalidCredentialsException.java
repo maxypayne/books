@@ -1,4 +1,4 @@
-package exception;
+package com.mlucov.exception;
 
 public class InvalidCredentialsException extends RuntimeException {
     public InvalidCredentialsException(String message) {

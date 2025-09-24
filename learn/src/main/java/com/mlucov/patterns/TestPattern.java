@@ -1,6 +1,8 @@
 package com.mlucov.patterns;
 
-import learn.patterns.builder.Contract;
+//import learn.patterns.builder.Contract;
+
+import com.mlucov.patterns.builder.Contract;
 
 import java.util.Date;
 

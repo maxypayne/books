@@ -1,4 +1,4 @@
-package exception;
+package com.mlucov.exception;
 
 /**
  * Custom exception to be thrown when a user is not found.
