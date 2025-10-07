@@ -1,46 +1,28 @@
 package com.mlucov.person;
 
-
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Objects;
-import java.util.function.Consumer;
-
-@Setter
 @Getter
+@Setter
 public class Person {
-    private String name;
-    private Integer age;
-
+    public String name;
+    public Integer age;
+    public String city;
     public Person(String name, Integer age) {
         this.name = name;
         this.age = age;
+        this.city = "Defaut city";
     }
-
-    public static class Builder {
-        private String name;
-        private Integer age;
-
-        public Builder name(String name){ this.name = name; return this; }
-        public Builder age(Integer age){ this.age = age; return this; }
-        public Person build() {
-            return new Person(name, age);
-        }
+    public Person(String name, Integer age, String city) {
+        this.name = name;
+        this.age = age;
+        this.city = city;
     }
-
     @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Person)) {
-            return false;
-        }
-        return Objects.equals(((Person) obj).age, this.age) && Objects.equals(((Person) obj).name, this.name);
+    public String toString() {
+        return "Person " + name + " has : "  + age + " and lives in " + city;
     }
 
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, age);
-    }
 }

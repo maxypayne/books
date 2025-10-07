@@ -1,12 +1,11 @@
 package com.mlucov.lambda;
 
-import com.mlucov.person.Person;
+import com.mlucov.person.PersonWithBuilder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.function.*;
-import java.util.stream.Collectors;
 
 public class Exercises {
     public static void main(String[] args) {
@@ -53,6 +52,8 @@ public class Exercises {
         ex41();
         ex42();
         ex43();
+        ex44();
+        ex45();
     }
     public static void ex1() {
         Predicate<Integer> p = i -> i % 2 == 0;
@@ -138,7 +139,7 @@ public class Exercises {
         consumer.accept("hello");
     }
     public static void ex15() {
-        Person max = new Person.Builder().name("Max").age(23).build();
+        PersonWithBuilder max = new PersonWithBuilder.Builder().name("Max").age(23).build();
         System.out.println("Crée un Consumer<Person> (classe simple) qui affiche son nom et son âge.");
 //        Consumer<Person> consumer = person -> System.out.println(person.getName() + " " + person.getAge());
 //        consumer.accept(max);
@@ -296,14 +297,30 @@ public class Exercises {
         Integer sum = list.stream().reduce(0, binaryOperator);
         System.out.println("sum : " + sum);
     }
+    public static void ex44() {
+        System.out.println("Utilise un UnaryOperator<String> avec map() pour transformer tous les mots d’une liste en majuscules.");
+        List<String> list = List.of("one", "two", "three", "alcatel", "telephone");
+        UnaryOperator<String> unaryOperator = String::toUpperCase;
+        List<String> transformedList = list.stream().map(unaryOperator).toList();
+        System.out.println("transformedList : " + transformedList);
+    }
+    public static void ex45() {
+        System.out.println("Combine une Function<Integer, Integer> et une Predicate<Integer> pour calculer le carré des nombres pairs uniquement.");
+        Function<Integer, Integer> function = i -> i * i;
+        Predicate<Integer> predicate = x -> x % 2 == 0;
+        List<Integer> list = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        List<Integer> filteredList = list.stream().filter(predicate).map(function).toList();
+        System.out.println("filteredList : " + filteredList);
+    }
+    public static void ex46() {
+//        List<Order> orders = List.of(
+//            new Order(false, "order 1"),
+//            new Order(true, "order 3"),
+//            new Order(true, "order 3")
+//        );
+//
+//        Predicate<Order> orderPredicate = Order::isPaid;
+//
+//        List<Order> filteredList = orders.stream().filter(orderPredicate).toList();
+    }
 }
-
-//
-//
-//Utilise un UnaryOperator<String> avec map() pour transformer tous les mots d’une liste en majuscules.
-//
-//Combine une Function<Integer, Integer> et une Predicate<Integer> pour calculer le carré des nombres pairs uniquement.
-//
-//Écris une méthode générique qui prend une Function<T, R> et l’applique à tous les éléments d’une liste.
-//
-//Implémente une petite calculatrice avec BiFunction<Integer, Integer, Integer> pour addition, soustraction, multiplication et division.

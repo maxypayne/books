@@ -1,8 +1,7 @@
 package com.mlucov;
 
-import com.mlucov.person.Person;
+import com.mlucov.person.PersonWithBuilder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -17,9 +16,9 @@ public class Main {
             //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
             // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
             System.out.println("i = " + i);
-            List<Person> people = List.of();
+            List<PersonWithBuilder> people = List.of();
 
-            Person  p = new Person.Builder().name("Max").age(236).build();
+            PersonWithBuilder p = new PersonWithBuilder.Builder().name("Max").age(236).build();
 
 //            people.stream().forEach(p::setName);
         }

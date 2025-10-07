@@ -15,7 +15,7 @@ public class ProductSearchQuery implements ProductSearchApi {
     @Override
     public PaginatedOutput<ProductDocumentOutput> search(String keyword, int page, int size) {
         Page<ProductDocument> products = productSearchGateway.search(keyword, page, size);
-
+        return null;
     }
 
     @Override
