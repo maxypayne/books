@@ -1,7 +1,6 @@
 package com.mlucov.sorting;
 
-import com.mlucov.person.Person;
-import com.mlucov.person.PersonWithBuilder;
+import com.mlucov.dto.Person;
 import com.mlucov.person.PersonWithComparable;
 
 import java.util.ArrayList;

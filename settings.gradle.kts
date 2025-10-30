@@ -23,3 +23,5 @@ findProject(":infrastructure:file-store")?.name = "file-store"
 include("infrastructure:security")
 include("infrastructure:search")
 include("infrastructure:search")
+include("tot")
+include("udemy")

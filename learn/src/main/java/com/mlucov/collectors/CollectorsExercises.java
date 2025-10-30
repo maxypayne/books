@@ -1,9 +1,13 @@
 package com.mlucov.collectors;
 
-import com.mlucov.person.Person;
+import com.mlucov.dto.Order;
+import com.mlucov.dto.Product;
+import com.mlucov.dto.Student;
+import com.mlucov.dto.Person;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class CollectorsExercises {
@@ -38,6 +42,27 @@ public class CollectorsExercises {
         ex28();
         ex29();
         ex30();
+        ex31();
+        ex32();
+        ex33();
+        ex34();
+        ex35();
+        ex36();
+        ex37();
+        ex38();
+        ex39();
+        ex40();
+        ex41();
+        ex42();
+        ex43();
+        ex44();
+        ex45();
+        ex46();
+        ex47();
+        ex48();
+        ex49();
+        ex50();
+
     }
 
     public static void ex1() {
@@ -314,9 +339,9 @@ public class CollectorsExercises {
             new Person("Charlie", 25, "Paris")
         );
 
-        Map<String, Long> result =
-            people.stream().collect(Collectors.groupingBy(p -> p.city, Collectors.counting()));
+        Collector<Person, ? , Long> collector = Collectors.reducing(0L, p -> p.getAge().longValue(), Long::sum);
 
+        Map<String, Long> result = people.stream().collect(Collectors.groupingBy(Person::getCity, collector));
         System.out.println(result);
     }
 
@@ -328,10 +353,8 @@ public class CollectorsExercises {
             new Person("Bob", 30, "Lyon"),
             new Person("Charlie", 35, "Paris")
         );
-
-        Map<String, Double> result =
-            people.stream().collect(Collectors.groupingBy(p -> p.city, Collectors.averagingInt(p -> p.age)));
-
+        Collector<Person, ? , Double> collector = Collectors.reducing(0.0, (Person p) -> p.getAge().doubleValue(), Double::sum);
+        Map<String, Double> result = people.stream().collect(Collectors.groupingBy(Person::getCity, collector));
         System.out.println(result);
     }
 
@@ -344,10 +367,11 @@ public class CollectorsExercises {
             new Person("Charlie", 35, "Paris")
         );
 
-        Map<String, Optional<Person>> result =
-            people.stream().collect(Collectors.groupingBy(p -> p.city, Collectors.maxBy(Comparator.comparingInt(p -> p.age))));
-
-        System.out.println(result);
+//        Map<String, Optional<Person>> result = people.stream().collect(Collectors.groupingBy(Person::getCity), Collectors.reducing(
+//            Function.identity(), (p)-> p.),
+//
+//        );
+//        System.out.println(result);
     }
 
     public static void ex35() {
@@ -359,10 +383,8 @@ public class CollectorsExercises {
             new Person("Charlie", 35, "Paris")
         );
 
-        Map<String, List<String>> result =
-            people.stream().collect(Collectors.groupingBy(p -> p.city, Collectors.mapping(p -> p.name, Collectors.toList())));
-
-        System.out.println(result);
+//        Map<String, List<String>> result =
+//        System.out.println(result);
     }
 
     public static void ex36() {
@@ -374,13 +396,8 @@ public class CollectorsExercises {
             new Person("Charlie", 35, "Paris")
         );
 
-        Map<String, String> result =
-            people.stream().collect(Collectors.groupingBy(
-                p -> p.city,
-                Collectors.mapping(p -> p.name, Collectors.joining(", "))
-            ));
-
-        System.out.println(result);
+//        Map<String, String> result =
+//        System.out.println(result);
     }
 
     public static void ex37() {
@@ -392,12 +409,8 @@ public class CollectorsExercises {
             new Person("Charlie", 40, "Paris")
         );
 
-        Map<String, List<Person>> result =
-            people.stream().collect(Collectors.groupingBy(
-                p -> p.age < 30 ? "Jeune" : "Adulte"
-            ));
-
-        System.out.println(result);
+//        Map<String, List<Person>> result =
+//        System.out.println(result);
     }
 
     public static void ex38() {
@@ -409,10 +422,8 @@ public class CollectorsExercises {
             new Person("Charlie", 19, "Paris")
         );
 
-        Map<Boolean, List<Person>> result =
-            people.stream().collect(Collectors.partitioningBy(p -> p.age >= 18));
-
-        System.out.println(result);
+//        Map<Boolean, List<Person>> result =
+//        System.out.println(result);
     }
 
     public static void ex39() {
@@ -424,10 +435,8 @@ public class CollectorsExercises {
             new Person("Charlie", 35, "Paris")
         );
 
-        Map<String, Integer> result =
-            people.stream().collect(Collectors.groupingBy(p -> p.city, Collectors.summingInt(p -> p.age)));
-
-        System.out.println(result);
+//        Map<String, Integer> result =
+//        System.out.println(result);
     }
 
     public static void ex40() {
@@ -439,13 +448,446 @@ public class CollectorsExercises {
             new Person("Charlie", 35, "Paris")
         );
 
-        Map<String, Integer> result =
-            people.stream().collect(Collectors.groupingBy(
-                p -> p.city,
-                Collectors.summingInt(p -> p.name.length())
-            ));
+//        Map<String, Integer> result =
+//        System.out.println(result);
+    }
+    public static void ex41() {
+        System.out.println("************************ex41**************");
+        System.out.println("Regroupe les produits par catégorie.");
+        List<Product> products = List.of(
+            new Product("TV", "Électronique", 400),
+            new Product("Smartphone", "Électronique", 800),
+            new Product("Pomme", "Alimentation", 2)
+        );
+
+//        Map<String, List<Product>> result =
+//        System.out.println(result);
+    }
+
+    public static void ex42() {
+        System.out.println("************************ex42**************");
+        System.out.println("Somme du prix des produits par catégorie.");
+        List<Product> products = List.of(
+            new Product("TV", "Électronique", 400),
+            new Product("Smartphone", "Électronique", 800),
+            new Product("Pomme", "Alimentation", 2)
+        );
+
+        Map<String, Double> result =
+            products.stream().collect(Collectors.groupingBy(p -> p.getCategory(), Collectors.summingDouble(p -> p.getPrice())));
 
         System.out.println(result);
     }
 
+    public static void ex43() {
+        System.out.println("************************ex43**************");
+        System.out.println("Produit le plus cher par catégorie.");
+        List<Product> products = List.of(
+            new Product("TV", "Électronique", 400),
+            new Product("Smartphone", "Électronique", 800),
+            new Product("Pomme", "Alimentation", 2)
+        );
+
+//        Map<String, Optional<Product>> result =
+//        System.out.println(result);
+    }
+
+    public static void ex44() {
+        System.out.println("************************ex44**************");
+        System.out.println("Liste les noms de produits par catégorie.");
+        List<Product> products = List.of(
+            new Product("TV", "Électronique", 400),
+            new Product("Smartphone", "Électronique", 800),
+            new Product("Pomme", "Alimentation", 2)
+        );
+
+//        Map<String, List<String>> result =
+//        System.out.println(result);
+    }
+
+    public static void ex45() {
+        System.out.println("************************ex45**************");
+        System.out.println("Trie les produits par catégorie et concatène leurs noms.");
+        List<Product> products = List.of(
+            new Product("TV", "Électronique", 400),
+            new Product("Smartphone", "Électronique", 800),
+            new Product("Pomme", "Alimentation", 2)
+        );
+
+        Map<String, String> result =
+            products.stream().collect(Collectors.groupingBy(p -> p.getCategory(),
+                Collectors.mapping(p -> p.getName(), Collectors.joining(", "))));
+
+        System.out.println(result);
+    }
+
+    public static void ex46() {
+        System.out.println("************************ex46**************");
+        System.out.println("Crée une map des produits avec le nom comme clé et le prix comme valeur.");
+        List<Product> products = List.of(
+            new Product("TV", "Électronique", 400),
+            new Product("Smartphone", "Électronique", 800),
+            new Product("Pomme", "Alimentation", 2)
+        );
+
+//        Map<String, Double> result =
+//        System.out.println(result);
+    }
+
+    public static void ex47() {
+        System.out.println("************************ex47**************");
+        System.out.println("Regroupe les commandes par client.");
+        List<Order> orders = List.of(
+            new Order(1, "Alice", List.of(new Product("TV", "Électronique", 400))),
+            new Order(2, "Bob", List.of(new Product("Pomme", "Alimentation", 2))),
+            new Order(3, "Alice", List.of(new Product("Smartphone", "Électronique", 800)))
+        );
+
+//        Map<String, List<Order>> result =
+//        System.out.println(result);
+    }
+
+    public static void ex48() {
+        System.out.println("************************ex48**************");
+        System.out.println("Calcule le total dépensé par client.");
+        List<Order> orders = List.of(
+            new Order(1, "Alice", List.of(new Product("TV", "Électronique", 400))),
+            new Order(2, "Bob", List.of(new Product("Pomme", "Alimentation", 2))),
+            new Order(3, "Alice", List.of(new Product("Smartphone", "Électronique", 800)))
+        );
+
+//        Map<String, Double> result =
+//        System.out.println(result);
+    }
+
+    public static void ex49() {
+        System.out.println("************************ex49**************");
+        System.out.println("Partitionne les produits en chers (>100) et pas chers (<=100).");
+        List<Product> products = List.of(
+            new Product("TV", "Électronique", 400),
+            new Product("Pomme", "Alimentation", 2),
+            new Product("Café", "Alimentation", 6)
+        );
+
+//        Map<Boolean, List<Product>> result =
+//
+//        System.out.println(result);
+    }
+
+    public static void ex50() {
+        System.out.println("************************ex50**************");
+        System.out.println("Calcule les statistiques des notes par section.");
+        List<Student> students = List.of(
+            new Student("Alice", 14, "A"),
+            new Student("Bob", 18, "A"),
+            new Student("Charlie", 10, "B"),
+            new Student("Diane", 16, "B")
+        );
+
+//        Map<String, IntSummaryStatistics> result =
+
+//        System.out.println(result);
+    }
+
+
 }
+
+//public static void ex32() {
+//        System.out.println("************************ex32**************");
+//        System.out.println("Compte le nombre de personnes par ville.");
+//        List<Person> people = List.of(
+//            new Person("Alice", 25, "Paris"),
+//            new Person("Bob", 30, "Lyon"),
+//            new Person("Charlie", 25, "Paris")
+//        );
+//
+//        Map<String, Long> result =
+//            people.stream().collect(Collectors.groupingBy(p -> p.city, Collectors.counting()));
+//
+//        System.out.println(result);
+//    }
+//
+//    public static void ex33() {
+//        System.out.println("************************ex33**************");
+//        System.out.println("Calcule la moyenne d’âge par ville.");
+//        List<Person> people = List.of(
+//            new Person("Alice", 25, "Paris"),
+//            new Person("Bob", 30, "Lyon"),
+//            new Person("Charlie", 35, "Paris")
+//        );
+//
+//        Map<String, Double> result =
+//            people.stream().collect(Collectors.groupingBy(p -> p.city, Collectors.averagingInt(p -> p.age)));
+//
+//        System.out.println(result);
+//    }
+//
+//    public static void ex34() {
+//        System.out.println("************************ex34**************");
+//        System.out.println("Récupère la personne la plus âgée par ville.");
+//        List<Person> people = List.of(
+//            new Person("Alice", 25, "Paris"),
+//            new Person("Bob", 30, "Lyon"),
+//            new Person("Charlie", 35, "Paris")
+//        );
+//
+//        Map<String, Optional<Person>> result =
+//            people.stream().collect(Collectors.groupingBy(p -> p.city, Collectors.maxBy(Comparator.comparingInt(p -> p.age))));
+//
+//        System.out.println(result);
+//    }
+//
+//    public static void ex35() {
+//        System.out.println("************************ex35**************");
+//        System.out.println("Liste les noms par ville.");
+//        List<Person> people = List.of(
+//            new Person("Alice", 25, "Paris"),
+//            new Person("Bob", 30, "Lyon"),
+//            new Person("Charlie", 35, "Paris")
+//        );
+//
+//        Map<String, List<String>> result =
+//            people.stream().collect(Collectors.groupingBy(p -> p.city, Collectors.mapping(p -> p.getName(), Collectors.toList())));
+//
+//        System.out.println(result);
+//    }
+//
+//    public static void ex36() {
+//        System.out.println("************************ex36**************");
+//        System.out.println("Concatène les noms des personnes d’une même ville.");
+//        List<Person> people = List.of(
+//            new Person("Alice", 25, "Paris"),
+//            new Person("Bob", 30, "Lyon"),
+//            new Person("Charlie", 35, "Paris")
+//        );
+//
+//        Map<String, String> result =
+//            people.stream().collect(Collectors.groupingBy(
+//                p -> p.city,
+//                Collectors.mapping(p -> p.getName(), Collectors.joining(", "))
+//            ));
+//
+//        System.out.println(result);
+//    }
+//
+//    public static void ex37() {
+//        System.out.println("************************ex37**************");
+//        System.out.println("Regroupe les personnes par tranche d’âge (moins de 30, 30 ou plus).");
+//        List<Person> people = List.of(
+//            new Person("Alice", 25, "Paris"),
+//            new Person("Bob", 32, "Lyon"),
+//            new Person("Charlie", 40, "Paris")
+//        );
+//
+//        Map<String, List<Person>> result =
+//            people.stream().collect(Collectors.groupingBy(
+//                p -> p.age < 30 ? "Jeune" : "Adulte"
+//            ));
+//
+//        System.out.println(result);
+//    }
+//
+//    public static void ex38() {
+//        System.out.println("************************ex38**************");
+//        System.out.println("Partitionne les personnes en majeures et mineures.");
+//        List<Person> people = List.of(
+//            new Person("Alice", 17, "Paris"),
+//            new Person("Bob", 30, "Lyon"),
+//            new Person("Charlie", 19, "Paris")
+//        );
+//
+//        Map<Boolean, List<Person>> result =
+//            people.stream().collect(Collectors.partitioningBy(p -> p.age >= 18));
+//
+//        System.out.println(result);
+//    }
+//
+//    public static void ex39() {
+//        System.out.println("************************ex39**************");
+//        System.out.println("Calcule la somme des âges par ville.");
+//        List<Person> people = List.of(
+//            new Person("Alice", 25, "Paris"),
+//            new Person("Bob", 30, "Lyon"),
+//            new Person("Charlie", 35, "Paris")
+//        );
+//
+//        Map<String, Integer> result =
+//            people.stream().collect(Collectors.groupingBy(p -> p.city, Collectors.summingInt(p -> p.age)));
+//
+//        System.out.println(result);
+//    }
+//
+//    public static void ex40() {
+//        System.out.println("************************ex40**************");
+//        System.out.println("Nombre de lettres total des noms par ville.");
+//        List<Person> people = List.of(
+//            new Person("Alice", 25, "Paris"),
+//            new Person("Bob", 30, "Lyon"),
+//            new Person("Charlie", 35, "Paris")
+//        );
+//
+//        Map<String, Integer> result =
+//            people.stream().collect(Collectors.groupingBy(
+//                p -> p.city,
+//                Collectors.summingInt(p -> p.getName().length())
+//            ));
+//
+//        System.out.println(result);
+//    }
+//    public static void ex41() {
+//        System.out.println("************************ex41**************");
+//        System.out.println("Regroupe les produits par catégorie.");
+//        List<Product> products = List.of(
+//            new Product("TV", "Électronique", 400),
+//            new Product("Smartphone", "Électronique", 800),
+//            new Product("Pomme", "Alimentation", 2)
+//        );
+//
+//        Map<String, List<Product>> result =
+//            products.stream().collect(Collectors.groupingBy(p -> p.getCategory()));
+//
+//        System.out.println(result);
+//    }
+//
+//    public static void ex42() {
+//        System.out.println("************************ex42**************");
+//        System.out.println("Somme du prix des produits par catégorie.");
+//        List<Product> products = List.of(
+//            new Product("TV", "Électronique", 400),
+//            new Product("Smartphone", "Électronique", 800),
+//            new Product("Pomme", "Alimentation", 2)
+//        );
+//
+//        Map<String, Double> result =
+//            products.stream().collect(Collectors.groupingBy(p -> p.getCategory(), Collectors.summingDouble(p -> p.getPrice())));
+//
+//        System.out.println(result);
+//    }
+//
+//    public static void ex43() {
+//        System.out.println("************************ex43**************");
+//        System.out.println("Produit le plus cher par catégorie.");
+//        List<Product> products = List.of(
+//            new Product("TV", "Électronique", 400),
+//            new Product("Smartphone", "Électronique", 800),
+//            new Product("Pomme", "Alimentation", 2)
+//        );
+//
+//        Map<String, Optional<Product>> result =
+//            products.stream().collect(Collectors.groupingBy(p -> p.getCategory(),
+//                Collectors.maxBy(Comparator.comparingDouble(p -> p.getPrice()))));
+//
+//        System.out.println(result);
+//    }
+//
+//    public static void ex44() {
+//        System.out.println("************************ex44**************");
+//        System.out.println("Liste les noms de produits par catégorie.");
+//        List<Product> products = List.of(
+//            new Product("TV", "Électronique", 400),
+//            new Product("Smartphone", "Électronique", 800),
+//            new Product("Pomme", "Alimentation", 2)
+//        );
+//
+//        Map<String, List<String>> result =
+//            products.stream().collect(Collectors.groupingBy(p -> p.getCategory(),
+//                Collectors.mapping(p -> p.getName(), Collectors.toList())));
+//
+//        System.out.println(result);
+//    }
+//
+//    public static void ex45() {
+//        System.out.println("************************ex45**************");
+//        System.out.println("Trie les produits par catégorie et concatène leurs noms.");
+//        List<Product> products = List.of(
+//            new Product("TV", "Électronique", 400),
+//            new Product("Smartphone", "Électronique", 800),
+//            new Product("Pomme", "Alimentation", 2)
+//        );
+//
+//        Map<String, String> result =
+//            products.stream().collect(Collectors.groupingBy(p -> p.getCategory(),
+//                Collectors.mapping(p -> p.getName(), Collectors.joining(", "))));
+//
+//        System.out.println(result);
+//    }
+//
+//    public static void ex46() {
+//        System.out.println("************************ex46**************");
+//        System.out.println("Crée une map des produits avec le nom comme clé et le prix comme valeur.");
+//        List<Product> products = List.of(
+//            new Product("TV", "Électronique", 400),
+//            new Product("Smartphone", "Électronique", 800),
+//            new Product("Pomme", "Alimentation", 2)
+//        );
+//
+//        Map<String, Double> result =
+//            products.stream().collect(Collectors.toMap(p -> p.getName(), p -> p.getPrice()));
+//
+//        System.out.println(result);
+//    }
+//
+//    public static void ex47() {
+//        System.out.println("************************ex47**************");
+//        System.out.println("Regroupe les commandes par client.");
+//        List<Order> orders = List.of(
+//            new Order(1, "Alice", List.of(new Product("TV", "Électronique", 400))),
+//            new Order(2, "Bob", List.of(new Product("Pomme", "Alimentation", 2))),
+//            new Order(3, "Alice", List.of(new Product("Smartphone", "Électronique", 800)))
+//        );
+//
+//        Map<String, List<Order>> result =
+//            orders.stream().collect(Collectors.groupingBy(o -> o.getCustomer()));
+//
+//        System.out.println(result);
+//    }
+//
+//    public static void ex48() {
+//        System.out.println("************************ex48**************");
+//        System.out.println("Calcule le total dépensé par client.");
+//        List<Order> orders = List.of(
+//            new Order(1, "Alice", List.of(new Product("TV", "Électronique", 400))),
+//            new Order(2, "Bob", List.of(new Product("Pomme", "Alimentation", 2))),
+//            new Order(3, "Alice", List.of(new Product("Smartphone", "Électronique", 800)))
+//        );
+//
+//        Map<String, Double> result =
+//            orders.stream().collect(Collectors.groupingBy(
+//                o -> o.getCustomer(),
+//                Collectors.summingDouble(o -> o.getProducts().stream().mapToDouble(p -> p.getPrice()).sum())
+//            ));
+//
+//        System.out.println(result);
+//    }
+//
+//    public static void ex49() {
+//        System.out.println("************************ex49**************");
+//        System.out.println("Partitionne les produits en chers (>100) et pas chers (<=100).");
+//        List<Product> products = List.of(
+//            new Product("TV", "Électronique", 400),
+//            new Product("Pomme", "Alimentation", 2),
+//            new Product("Café", "Alimentation", 6)
+//        );
+//
+//        Map<Boolean, List<Product>> result =
+//            products.stream().collect(Collectors.partitioningBy(p -> p.getPrice() > 100));
+//
+//        System.out.println(result);
+//    }
+//
+//    public static void ex50() {
+//        System.out.println("************************ex50**************");
+//        System.out.println("Calcule les statistiques des notes par section.");
+//        List<Student> students = List.of(
+//            new Student("Alice", 14, "A"),
+//            new Student("Bob", 18, "A"),
+//            new Student("Charlie", 10, "B"),
+//            new Student("Diane", 16, "B")
+//        );
+//
+//        Map<String, IntSummaryStatistics> result =
+//            students.stream().collect(Collectors.groupingBy(s -> s.getSection(),
+//                Collectors.summarizingInt(Student::getGrade)));
+//
+//        System.out.println(result);
+//    }

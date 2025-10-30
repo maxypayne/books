@@ -1,9 +1,6 @@
 package com.mlucov.collectors;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -405,7 +402,7 @@ public class ReduceExercises {
         System.out.println("************************ex39**************");
         System.out.println("Partitionne les entiers selon s’ils sont > 10, puis somme chaque groupe avec reducing.");
         List<Integer> nombres = List.of(5, 15, 20, 3, 8);
-        Map<Boolean, Integer> result = nombres.stream().collect(Collectors.partitioningBy(x -> x > 10, Collectors.reducing(0, Integer::sum)));
+        Map<Boolean, Integer> result = nombres.stream().collect(Collectors.partitioningBy(x -> x > 10, Collectors.reducing(0, (s, e) -> s + e)));
         System.out.println(result);
     }
 

@@ -1,14 +1,8 @@
 package com.mlucov.sorting;
 
-import com.mlucov.person.Person;
+import com.mlucov.dto.Person;
 
-import java.io.Serializable;
 import java.util.Comparator;
-import java.util.Objects;
-import java.util.function.Function;
-import java.util.function.ToDoubleFunction;
-import java.util.function.ToIntFunction;
-import java.util.function.ToLongFunction;
 
 public class ComparatotImpl implements Comparator<Person> {
 
