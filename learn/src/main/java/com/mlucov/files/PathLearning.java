@@ -1,7 +1,6 @@
 package com.mlucov.files;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
@@ -17,6 +16,8 @@ public class PathLearning {
     public static void main(String[] args) {
         try {
 //        getData();
+            ex_1();
+//            getCurrentWorkingDirectory();
 //        searchData();
 //        createFleOrDirectory();
 //        deleteFileOrDirectory();
@@ -30,10 +31,51 @@ public class PathLearning {
 //          readFileAsAstream();
 //            getFileStore();
             getSpace();
+//            writeDataToFile("this is my data");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    public static void ex_1() {
+        String GREEN = "\u001B[32m";
+        String RESET = "\u001B[0m";
+
+        String url = "C:\\Users\\mlucov\\dev\\books\\learn\\src\\main\\java\\com\\mlucov\\files\\ZipFile.java";
+        Path path = Paths.get("C:\\Users\\mlucov\\dev\\books\\learn\\src\\main\\java\\com\\mlucov\\files\\file.txt");
+        File file = new File("file.txt");
+//        try {
+//            boolean isFileCreated = file.createNewFile();
+//            System.out.println(GREEN + "File created: " + isFileCreated + RESET);
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        try {
+//           boolean isFileCreated =  file.createNewFile();
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+        Path path1 = Path.of("./file.txt");
+
+        Iterator iterator = path1.toAbsolutePath().iterator();
+        while (iterator.hasNext()) {
+            System.out.println(GREEN + "Path: " + iterator.next() + RESET);
+        }
+    }
+
+    public static void getCurrentWorkingDirectory() {
+        System.out.println("current working directory: " + new File(".").getAbsolutePath());
+    }
+
+    public static void writeDataToFile(String content) {
+        Path path = Path.of("writableFile.txt");
+        try {
+            Files.createFile(path);
+            Files.writeString(path, content);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void getData() {
@@ -50,8 +92,10 @@ public class PathLearning {
         System.out.println("normalize()   = " + path.normalize());
     }
     public  static void searchData() {
-        Path pathToCombine = Paths.get("Users/maxim/Desktop/");
-        pathToCombine.resolve("Dev/api/server.js");
+        Path pathToCombine = Paths.get("Users/mlucov/dev/");
+        Path resolved = pathToCombine.resolve("books/learn/src/main/java/com/mlucov/files/ZipFile.java");
+
+        System.out.println(resolved);
 
         String pattern = "*.{js, html}";
         PathMatcher pathMatcher = FileSystems.getDefault().getPathMatcher("glob:" + pattern);
